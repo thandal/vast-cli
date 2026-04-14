@@ -288,7 +288,9 @@ _create_instance_args = [
 )
 def create__instance(args):
     """Create an instance from an offer ID."""
-    create_instance_impl(args.id, args)
+    rj = create_instance_impl(args.id, args)
+    if args.raw:
+        return rj
 
 
 @parser.command(
@@ -1174,8 +1176,7 @@ def show__instances_v1(args):
         page       += 1
 
         if args.raw:
-            print(json.dumps(data, indent=1))
-            return
+            return data
 
         if args.quiet:
             for inst in instances:
