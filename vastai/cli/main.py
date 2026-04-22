@@ -6,8 +6,7 @@ import requests
 
 from vastai.cli.parser import apwrap, argument, MyWideHelpFormatter, set_completers
 from vastai.cli.util import (
-    APIKEY_FILE, TFAKEY_FILE, VERSION, server_url_default,
-    api_key_guard, should_check_for_update, is_pip_package, check_for_update
+    APIKEY_FILE, TFAKEY_FILE, VERSION, server_url_default, api_key_guard,
 )
 
 try:
@@ -45,7 +44,7 @@ def main():
     # registrations on the global parser via _get_parser().
     from vastai.cli.commands import (  # noqa: F401
         instances, offers, machines, teams, keys, endpoints,
-        billing, storage, auth, misc, deployments, benchmark, metrics,
+        billing, storage, auth, misc, deployments, metrics,
         # clusters,  # cluster/overlay commands disabled for now
     )
 
@@ -99,14 +98,6 @@ def main():
                 args.api_key = reader.read().strip()
         else:
             args.api_key = None
-
-    # Version update check
-    if not args.raw and should_check_for_update:
-        try:
-            if is_pip_package():
-                check_for_update()
-        except Exception as e:
-            print(f"Error checking for update: {e}")
 
     # Execute command with error handling
     while True:
