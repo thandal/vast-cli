@@ -18,10 +18,6 @@ Manage GPU instances, templates, volumes, serverless endpoints, SSH keys, and bi
 ```bash
 # PyPI (recommended)
 pip install vastai
-
-# Latest from GitHub
-wget https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast
-chmod +x vast
 ```
 
 ## Quick start
